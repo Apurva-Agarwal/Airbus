@@ -1,0 +1,52 @@
+<div class="container">
+
+  <button class="myButton" (click)="logout()">Logout</button>
+  <div class="col-md-12" style="width:1000px"> 
+    <h2 style="text-align: center;"> User Details
+      <button class="btn btn-danger" (click)="addUser()" style="margin-left: auto; display: block;"> Add User</button>
+    </h2>
+    <nav class="navbar">
+
+      <input class="form-control" type="text" name="search" placeholder="Search anything" [(ngModel)]="filter">
+    </nav>
+
+    <table class="table" style="width:100%">
+      
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th (click)="sort('name')">User Name
+            <span class="glyphicon sort-icon" *ngIf="key =='name'"
+              [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          </th>
+          <th (click)="sort('email')">Email
+            <span class="glyphicon sort-icon" *ngIf="key =='email'"
+              [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          </th>
+          <!-- <th (click)="sort('country')">Country
+          <span class="glyphicon sort-icon" *ngIf="key =='country'"
+            [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th> -->
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let user of users | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 2, currentPage: p }; let i = index">
+          <td>{{i+1}}</td>
+          <td>{{user.firstName}} {{user.lastName}}</td>
+          <td>{{user.email}}</td>
+          <!-- <td>{{user.country}}</td> -->
+          <td>
+            <button class="btn btn-success" (click)="updateUser(user.id)">Update</button>
+            &nbsp;
+            <button class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+  </div>
+
+</div>
