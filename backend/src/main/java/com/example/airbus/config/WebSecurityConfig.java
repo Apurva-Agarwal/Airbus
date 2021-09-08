@@ -39,11 +39,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// configure AuthenticationManager so that it knows from where to load
 		// user for matching credentials
 		// Use BCryptPasswordEncoder
-		auth.userDetailsService(jwtUserDetailsService).passwordEncoder(encoder());
+		auth.userDetailsService(jwtUserDetailsService).passwordEncoder(getEncoder());
 	}
 
 	@Bean
-	public PasswordEncoder encoder() {
+	 PasswordEncoder getEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
