@@ -80,6 +80,7 @@ public class UserController {
 
 	@PostMapping("/login")
 	public ResponseEntity<User> login(@RequestBody JwtRequest authenticationRequest, HttpServletRequest req, Authentication authentication) {
+		System.out.println("inside loign");
 		User loginUser = userService.findUserByEmail(authenticationRequest.getUsername());
 
 		if (loginUser == null) {
