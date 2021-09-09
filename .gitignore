@@ -1,0 +1,5 @@
+/.metadata/
+frontend/node_modules/
+backend/.metadata
+backend/.settings
+backend/target

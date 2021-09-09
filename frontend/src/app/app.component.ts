@@ -11,7 +11,6 @@ export class AppComponent implements OnInit {
   constructor(private router:Router){}
   ngOnInit(){
     if(localStorage.getItem('token')){
-      console.log("inside");
       this.loggenInUser = true;
     }
   }
