@@ -1,6 +1,7 @@
 package com.example.airbus;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -53,9 +54,17 @@ class MachineRoundAirbusApplicationTests {
 		userRepository.save(user);
 		assertNotEquals("GM", userRepository.findByEmail("testUser@gmail.com").getCountry());
 	}
-
 	@Test
 	@Order(4)
+	public void testUpdate1() {
+		UserEntity user = userRepository.findByEmail("testUser@gmail.com");
+		user.setCountry("UK");
+		userRepository.save(user);
+		assertEquals("UK", userRepository.findByEmail("testUser@gmail.com").getCountry());
+	}
+
+	@Test
+	@Order(5)
 	public void testDelete() {
 		UserEntity user = userRepository.findByEmail("testUser@gmail.com");
 		userRepository.deleteById(user.getId());
