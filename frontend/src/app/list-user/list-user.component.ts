@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { Router } from "@angular/router";
 import { UserService } from "../service/user.service";
 import { User } from "../model/user.model";
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
-
+import {DataTableDirective} from 'angular-datatables';
 @Component({
   selector: 'app-list-user',
   templateUrl: './list-user.component.html',
   styleUrls: ['./list-user.component.css']
 })
 export class ListUserComponent implements OnInit {
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
   p: number = 1;
   dtOptions: DataTables.Settings = {};
   users: User[];
@@ -34,7 +36,8 @@ export class ListUserComponent implements OnInit {
     this.userService.getUsers()
       .subscribe(data => {
         this.users = data;
-        this.dtTrigger.next();
+        // this.dtTrigger.next();
+        this.rerender();
 
       });
   }
@@ -62,5 +65,20 @@ export class ListUserComponent implements OnInit {
     localStorage.removeItem("token");
     this.router.navigate(['login']);
   }
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+    // Destroy the table first
+    dtInstance.destroy();
+    // Call the dtTrigger to rerender again
+    this.dtTrigger.next();
+      });}
+    
+    ngAfterViewInit(): void {
+    this.dtTrigger.next();
+     }
+    
+    ngOnDestroy(): void {
+        this.dtTrigger.unsubscribe();
+     }
 
 }

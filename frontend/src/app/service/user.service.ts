@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {User} from "../model/user.model";
-
+import {environment} from '../../environments/environment'
 @Injectable()
 export class UserService {
   constructor(private http: HttpClient) { }
-  baseUrl: string = 'http://localhost:8080/api/users/';
+  baseUrl: string = environment.baseUrl +'api/users/';
 
   getUsers() {
     return this.http.get<User[]>(this.baseUrl + 'list');
@@ -26,6 +26,6 @@ export class UserService {
   }
 
   deleteUser(userId: number) {
-    return this.http.delete(this.baseUrl + 'delete/' + userId);
+    return this.http.post(this.baseUrl + 'delete/' + userId,"");
   }
 }

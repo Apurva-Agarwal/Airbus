@@ -31,7 +31,9 @@ export class EditUserComponent implements OnInit {
       id: [],
       email: ['', Validators.required],
       firstName: ['', Validators.required],
-      lastName: ['', Validators.required]
+      lastName: ['', Validators.required],
+      country:['',Validators.required],
+      password:['']
     });
     this.userService.getUserById(+userId)
       .subscribe( data => {

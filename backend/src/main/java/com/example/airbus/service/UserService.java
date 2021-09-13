@@ -58,6 +58,9 @@ public class UserService {
 			existingUser.setFirstName(user.getFirstName());
 			existingUser.setLastName(user.getLastName());
 			existingUser.setRole("GENERAL");
+			existingUser.setPassword(encoder.encode(user.getPassword()));
+			existingUser.setCountry(user.getCountry());
+
 			userRepository.save(existingUser);
 		}
 		return user;
@@ -71,6 +74,7 @@ public class UserService {
 		newUser.setLastName(user.getLastName());
 		newUser.setPassword(encoder.encode(user.getPassword()));
 		newUser.setRole("GENERAL");
+		newUser.setCountry(user.getCountry());
 		userRepository.save(newUser);
 
 		return user;

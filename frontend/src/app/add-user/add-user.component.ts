@@ -29,7 +29,8 @@ export class AddUserComponent implements OnInit {
       email: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      password: ['',Validators.required]
+      password: ['',Validators.required],
+      country : ['',Validators.required]
     });
 
   }
@@ -45,7 +46,7 @@ export class AddUserComponent implements OnInit {
   onSubmit() {
     this.userService.createUser(this.addForm.value)
       .subscribe( data => {
-        this.router.navigate(['login']);
+        this.location.back();
         this.toastr.success("User Added successfully");
       });
   }
