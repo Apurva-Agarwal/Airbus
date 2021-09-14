@@ -6,7 +6,7 @@ This a fullstack crud application with backend configured in SpringBoot and Fron
 
 Tools and technologies used
 
-Server-side technologies
+# Server-side technologies
 
 Spring Boot – 2.0.5.RELEASE
 
@@ -19,7 +19,7 @@ Hibernate – 5.2.17.Final
 Spring Data JPA - 2+
 
 
-Front end technologies
+# Front end technologies
 
 Angular 6.0.0
 
@@ -29,7 +29,7 @@ npm- 6.9.0
 
 
 
-Tools
+# Tools
 
 Maven – 3.2+
 
@@ -39,4 +39,4 @@ Visual Studio 2017 // Angular App development
 
 Angular CLI
 
-Deployed in Heroku
+# Deployed in Heroku
