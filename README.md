@@ -40,3 +40,5 @@ Visual Studio 2017 // Angular App development
 Angular CLI
 
 # Deployed in Heroku
+# Access the app on the following url
+https://airbus-angular.herokuapp.com/login
